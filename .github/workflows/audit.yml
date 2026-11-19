@@ -11,5 +11,7 @@ jobs:
     steps:
       # Taps this checkout as doubleloop-io/tap.
       - uses: Homebrew/actions/setup-homebrew@main
+      # Homebrew loads no cask from a non-official tap until it is trusted.
+      - run: brew trust --tap doubleloop-io/tap
       - run: brew style doubleloop-io/tap
       - run: brew audit --cask --strict --online --tap doubleloop-io/tap
