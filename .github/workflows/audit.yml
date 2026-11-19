@@ -1,0 +1,15 @@
+name: audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  audit:
+    runs-on: macos-latest
+    steps:
+      # Taps this checkout as doubleloop-io/tap.
+      - uses: Homebrew/actions/setup-homebrew@main
+      - run: brew style doubleloop-io/tap
+      - run: brew audit --cask --strict --online --tap doubleloop-io/tap
